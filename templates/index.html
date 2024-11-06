@@ -1,0 +1,86 @@
+{% extends 'layout.html' %} {% block body %} {% with messages =
+get_flashed_messages() %} {% if messages %} {% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+{% endfor %} {% endif %} {% endwith %}
+
+<div class="row">
+  <div class="col-md-5">
+    <div class="card card-body">
+      <form action="/add_contact" method="POST">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" required />
+        </div>
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input
+            type="text"
+            class="form-control"
+            id="apellido"
+            name="apellido"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            name="email"
+            required
+          />
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-outline-success">Success</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Email</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+          <th scope="row">{{usuario.0}}</th>
+          <td>{{usuario.1}}</td>
+          <td>{{usuario.2}}</td>
+          <td>{{usuario.3}}</td>
+          <td>
+            <a
+              class="btn btn-outline-warning"
+              href="/data_edit_contact/{{usuario.0}}"
+              >Editar</a
+            >
+            <a
+              class="btn btn-outline-danger"
+              href="/delete_contact/{{usuario.0}}"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

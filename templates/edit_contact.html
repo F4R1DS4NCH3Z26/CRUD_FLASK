@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <div class="card card-body">
+      <form action="/edit_contact/{{usuarios.0}}" method="POST">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" value="{{usuarios.1}}" />
+        </div>
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input
+            type="text"
+            class="form-control"
+            id="apellido"
+            name="apellido"
+            value="{{usuarios.2}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            name="email"
+            value="{{usuarios.3}}"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
